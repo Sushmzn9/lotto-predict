@@ -8,25 +8,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { LottoTableProps } from "../NumberGenerator/Button";
 
-export default function LottoTable({ PowerBallNumber, formattedNumber }) {
+export default function LottoTable({ TableData }: LottoTableProps) {
   return (
-    <Table>
+    <Table className="border mt-7">
       <TableCaption>Recent PowerBall Wins</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Game</TableHead>
           <TableHead>Numbers</TableHead>
-
           <TableHead className="text-left">PowerBall</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">1</TableCell>
-          <TableCell>{formattedNumber}</TableCell>
-          <TableCell className="text-left">{PowerBallNumber}</TableCell>
-        </TableRow>
+        {TableData.map(({ NormalNumber, PowerBall }, index) => (
+          <TableRow key={index}>
+            <TableCell className="font-medium">{index + 1}</TableCell>
+            <TableCell>{NormalNumber}</TableCell>
+            <TableCell className="text-left">{PowerBall}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
